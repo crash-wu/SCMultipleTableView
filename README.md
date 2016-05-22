@@ -121,3 +121,6 @@
     optional func m_tableView(tableView:SCMultipleTableView ,didSelectRowAtIndexPath indexPath :NSIndexPath) ->Void
   
   
+#Install
+
+    pod 'SCMultipleTableView'
