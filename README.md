@@ -1,6 +1,9 @@
 # SCMultipleTableView
 两级列表
 
+![Benchmark result](https://raw.github.com/ibireme/YYModel/master/Benchmark/Result.png
+)
+
 #Usage
 
     var table : SCMultipleTableView?
