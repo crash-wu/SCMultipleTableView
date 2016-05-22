@@ -40,6 +40,7 @@
      
      :returns: section 数量
      */
+     
    optional func numberOfSectionsInSCMutlipleTableView(tableView:SCMultipleTableView) ->Int
     
     
