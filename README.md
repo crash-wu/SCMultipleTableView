@@ -4,8 +4,8 @@
 #Usage
 
     var table : SCMultipleTableView?
-  
-   tableData =  [["section0-row0","section0-row1"],["section1-row0","section1-row1"],["section2-row0","section2-row1"]]
+    //表格数据源格式
+    tableData =  [["section0-row0","section0-row1"],["section1-row0","section1-row1"],["section2-row0","section2-row1"]]
   
    # SCMultipleTableDelegate
   
