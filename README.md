@@ -3,11 +3,11 @@
 
 #Usage
 
-  var table : SCMultipleTableView?
+    var table : SCMultipleTableView?
   
-  tableData =  [["section0-row0","section0-row1"],["section1-row0","section1-row1"],["section2-row0","section2-row1"]]
+   tableData =  [["section0-row0","section0-row1"],["section1-row0","section1-row1"],["section2-row0","section2-row1"]]
   
-  # SCMultipleTableDelegate
+   # SCMultipleTableDelegate
   
       /**
      计算每个section中单元格数量
@@ -41,7 +41,7 @@
      :returns: section 数量
      */
      
-   optional func numberOfSectionsInSCMutlipleTableView(tableView:SCMultipleTableView) ->Int
+    optional func numberOfSectionsInSCMutlipleTableView(tableView:SCMultipleTableView) ->Int
     
     
     /**
