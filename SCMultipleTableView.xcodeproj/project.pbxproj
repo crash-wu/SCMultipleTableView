@@ -17,6 +17,7 @@
 		98648F861CF1F57A009365C5 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98648F851CF1F57A009365C5 /* TableViewController.swift */; };
 		98648F881CF201A5009365C5 /* SCMultipleTableView.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 98648F871CF201A5009365C5 /* SCMultipleTableView.podspec */; };
 		98C3E18D1D194F5A00E242EE /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 98C3E18C1D194F5A00E242EE /* README.md */; };
+		98C3E18F1D194F9600E242EE /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 98C3E18E1D194F9600E242EE /* LICENSE */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		98648F851CF1F57A009365C5 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		98648F871CF201A5009365C5 /* SCMultipleTableView.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SCMultipleTableView.podspec; sourceTree = "<group>"; };
 		98C3E18C1D194F5A00E242EE /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		98C3E18E1D194F9600E242EE /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +106,7 @@
 		98648F521CF1EF31009365C5 /* SCMultipleTableView */ = {
 			isa = PBXGroup;
 			children = (
+				98C3E18E1D194F9600E242EE /* LICENSE */,
 				98C3E18C1D194F5A00E242EE /* README.md */,
 				98648F831CF1F27E009365C5 /* NationMenuListSectionHeadView.swift */,
 				98648F811CF1EF80009365C5 /* SCMultipleTableView.swift */,
@@ -240,6 +243,7 @@
 			files = (
 				98648F5E1CF1EF31009365C5 /* LaunchScreen.storyboard in Resources */,
 				98648F881CF201A5009365C5 /* SCMultipleTableView.podspec in Resources */,
+				98C3E18F1D194F9600E242EE /* LICENSE in Resources */,
 				98648F5B1CF1EF31009365C5 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
