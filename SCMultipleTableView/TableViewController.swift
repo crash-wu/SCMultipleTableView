@@ -19,7 +19,7 @@ class TableViewController: UIViewController,SCMultipleTableDelegate {
         // Do any additional setup after loading the view.
         
         tableView = SCMultipleTableView(frame: CGRectMake(0, 0, self.view.frame.width, self.view.frame.height), style: .Plain)
-        tableView?.delegate = self
+        tableView?.multipleDelegate = self
         
         tableView?.backgroundColor = UIColor.grayColor()
         self.view.addSubview(tableView!)
@@ -27,7 +27,7 @@ class TableViewController: UIViewController,SCMultipleTableDelegate {
         data = [["section0-row0","section0-row1"],["section1-row0","section1-row1"],["section2-row0","section2-row1"]]
         
  
-        tableView?.reloadDate()
+        tableView?.reload()
 
     }
 

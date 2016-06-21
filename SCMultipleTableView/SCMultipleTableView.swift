@@ -163,7 +163,7 @@ public class SCMultipleTableView: UIView ,UITableViewDataSource,UITableViewDeleg
      
      :returns: 可重用的cell，或者nil（如果没有可重用的）
      */
-    func dequeueReusableCellWithIdentifier(identifier :String)->UITableViewCell?{
+  public  func dequeueReusableCellWithIdentifier(identifier :String)->UITableViewCell?{
         
         return self.tableView?.dequeueReusableCellWithIdentifier(identifier)
         
@@ -177,7 +177,7 @@ public class SCMultipleTableView: UIView ,UITableViewDataSource,UITableViewDeleg
      
      :returns:可重用的cell，或者nil（如果没有可重用的）
      */
-    func dequeueReusableCellWithIdentifier(identifier :String ,forIndexPath indexPath :NSIndexPath) ->UITableViewCell?{
+   public func dequeueReusableCellWithIdentifier(identifier :String ,forIndexPath indexPath :NSIndexPath) ->UITableViewCell?{
         
         return self.tableView?.dequeueReusableCellWithIdentifier(identifier, forIndexPath: indexPath)
     }
@@ -191,7 +191,7 @@ public class SCMultipleTableView: UIView ,UITableViewDataSource,UITableViewDeleg
      
      :returns: 可重用的section headView or section footView
      */
-    func dequeueReusableHeaderFooterViewWithIdentifier(identifier:String)->UITableViewHeaderFooterView?{
+   public func dequeueReusableHeaderFooterViewWithIdentifier(identifier:String)->UITableViewHeaderFooterView?{
         
         return self.tableView?.dequeueReusableHeaderFooterViewWithIdentifier(identifier)
     }
@@ -204,7 +204,7 @@ public class SCMultipleTableView: UIView ,UITableViewDataSource,UITableViewDeleg
      :param: indexPath 单元格索引
      :param: animate
      */
-    func deselectRowAtIndexPath(indexPath:NSIndexPath, animated animate:Bool)->Void{
+   public func deselectRowAtIndexPath(indexPath:NSIndexPath, animated animate:Bool)->Void{
         
         self.tableView?.deselectRowAtIndexPath(indexPath, animated: animate)
     }
@@ -212,7 +212,8 @@ public class SCMultipleTableView: UIView ,UITableViewDataSource,UITableViewDeleg
     /**
      刷新数据
      */
-    func reload() ->Void{
+   public func reload() ->Void{
+        
         
         self.tableView?.reloadData()
     }
