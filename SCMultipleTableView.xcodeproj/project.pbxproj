@@ -16,6 +16,7 @@
 		98648F841CF1F27E009365C5 /* NationMenuListSectionHeadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98648F831CF1F27E009365C5 /* NationMenuListSectionHeadView.swift */; };
 		98648F861CF1F57A009365C5 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98648F851CF1F57A009365C5 /* TableViewController.swift */; };
 		98648F881CF201A5009365C5 /* SCMultipleTableView.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 98648F871CF201A5009365C5 /* SCMultipleTableView.podspec */; };
+		98C3E18D1D194F5A00E242EE /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 98C3E18C1D194F5A00E242EE /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		98648F831CF1F27E009365C5 /* NationMenuListSectionHeadView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NationMenuListSectionHeadView.swift; sourceTree = "<group>"; };
 		98648F851CF1F57A009365C5 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		98648F871CF201A5009365C5 /* SCMultipleTableView.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SCMultipleTableView.podspec; sourceTree = "<group>"; };
+		98C3E18C1D194F5A00E242EE /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 		98648F521CF1EF31009365C5 /* SCMultipleTableView */ = {
 			isa = PBXGroup;
 			children = (
+				98C3E18C1D194F5A00E242EE /* README.md */,
 				98648F831CF1F27E009365C5 /* NationMenuListSectionHeadView.swift */,
 				98648F811CF1EF80009365C5 /* SCMultipleTableView.swift */,
 				98648F531CF1EF31009365C5 /* AppDelegate.swift */,
@@ -264,6 +267,7 @@
 			files = (
 				98648F821CF1EF80009365C5 /* SCMultipleTableView.swift in Sources */,
 				98648F841CF1F27E009365C5 /* NationMenuListSectionHeadView.swift in Sources */,
+				98C3E18D1D194F5A00E242EE /* README.md in Sources */,
 				98648F861CF1F57A009365C5 /* TableViewController.swift in Sources */,
 				98648F541CF1EF31009365C5 /* AppDelegate.swift in Sources */,
 			);
@@ -482,6 +486,7 @@
 				98648F7A1CF1EF31009365C5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		98648F7B1CF1EF31009365C5 /* Build configuration list for PBXNativeTarget "SCMultipleTableViewTests" */ = {
 			isa = XCConfigurationList;
@@ -490,6 +495,7 @@
 				98648F7D1CF1EF31009365C5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		98648F7E1CF1EF31009365C5 /* Build configuration list for PBXNativeTarget "SCMultipleTableViewUITests" */ = {
 			isa = XCConfigurationList;
@@ -498,6 +504,7 @@
 				98648F801CF1EF31009365C5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
