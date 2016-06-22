@@ -130,8 +130,8 @@ import UIKit
 
 public class SCMultipleTableView: UIView ,UITableViewDataSource,UITableViewDelegate {
     
-    var tableView :UITableView?
-    var currentOpenedIndexPaths :Array<NSIndexPath>? = []//当前展开的所有cell的indexPath的数组
+   public var tableView :UITableView?
+   public  var currentOpenedIndexPaths :Array<NSIndexPath>? = []//当前展开的所有cell的indexPath的数组
     
     weak public var multipleDelegate : SCMultipleTableDelegate? //多重表格代理
     
