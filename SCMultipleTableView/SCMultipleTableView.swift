@@ -130,7 +130,7 @@ import UIKit
 
 public class SCMultipleTableView: UIView ,UITableViewDataSource,UITableViewDelegate {
     
-   public var tableView :UITableView?
+   public var tableView :UITableView!
    public  var currentOpenedIndexPaths :Array<NSIndexPath>? = []//当前展开的所有cell的indexPath的数组
     
     weak public var multipleDelegate : SCMultipleTableDelegate? //多重表格代理
@@ -138,10 +138,10 @@ public class SCMultipleTableView: UIView ,UITableViewDataSource,UITableViewDeleg
     public init(frame: CGRect ,style:UITableViewStyle) {
         super.init(frame: frame)
         tableView = UITableView(frame: frame, style: style)
-        tableView?.autoresizingMask = [.FlexibleHeight, .FlexibleWidth]
-        tableView?.dataSource = self
-        tableView?.delegate = self
-        tableView?.separatorStyle = .None
+        tableView.autoresizingMask = [.FlexibleHeight, .FlexibleWidth]
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.separatorStyle = .None
         self.addSubview(tableView!)
     }
     
@@ -165,7 +165,7 @@ public class SCMultipleTableView: UIView ,UITableViewDataSource,UITableViewDeleg
      */
   public  func dequeueReusableCellWithIdentifier(identifier :String)->UITableViewCell?{
         
-        return self.tableView?.dequeueReusableCellWithIdentifier(identifier)
+        return self.tableView.dequeueReusableCellWithIdentifier(identifier)
         
     }
     
@@ -179,7 +179,7 @@ public class SCMultipleTableView: UIView ,UITableViewDataSource,UITableViewDeleg
      */
    public func dequeueReusableCellWithIdentifier(identifier :String ,forIndexPath indexPath :NSIndexPath) ->UITableViewCell?{
         
-        return self.tableView?.dequeueReusableCellWithIdentifier(identifier, forIndexPath: indexPath)
+        return self.tableView.dequeueReusableCellWithIdentifier(identifier, forIndexPath: indexPath)
     }
     
     
@@ -193,7 +193,7 @@ public class SCMultipleTableView: UIView ,UITableViewDataSource,UITableViewDeleg
      */
    public func dequeueReusableHeaderFooterViewWithIdentifier(identifier:String)->UITableViewHeaderFooterView?{
         
-        return self.tableView?.dequeueReusableHeaderFooterViewWithIdentifier(identifier)
+        return self.tableView.dequeueReusableHeaderFooterViewWithIdentifier(identifier)
     }
     
     
@@ -206,7 +206,7 @@ public class SCMultipleTableView: UIView ,UITableViewDataSource,UITableViewDeleg
      */
    public func deselectRowAtIndexPath(indexPath:NSIndexPath, animated animate:Bool)->Void{
         
-        self.tableView?.deselectRowAtIndexPath(indexPath, animated: animate)
+        self.tableView.deselectRowAtIndexPath(indexPath, animated: animate)
     }
     
     /**
@@ -317,22 +317,22 @@ public class SCMultipleTableView: UIView ,UITableViewDataSource,UITableViewDeleg
             
         }
         
-        self.tableView?.beginUpdates()
+        self.tableView.beginUpdates()
         
         if openedIndexPaths?.count > 0 {
-            self.tableView?.insertRowsAtIndexPaths(openedIndexPaths!, withRowAnimation: .Automatic)
+            self.tableView.insertRowsAtIndexPaths(openedIndexPaths!, withRowAnimation: .Automatic)
         }
         
         
         if deleteIndexPaths?.count > 0 {
             
-            self.tableView?.deleteRowsAtIndexPaths(deleteIndexPaths!, withRowAnimation: .Automatic)
+            self.tableView.deleteRowsAtIndexPaths(deleteIndexPaths!, withRowAnimation: .Automatic)
         }
-        self.tableView?.endUpdates()
+        self.tableView.endUpdates()
         
         let range = NSRange(location: section, length: 1)
         let indexSet = NSIndexSet(indexesInRange: range)
-        self.tableView?.reloadSections(indexSet, withRowAnimation: .Automatic)
+        self.tableView.reloadSections(indexSet, withRowAnimation: .Automatic)
     }
     
     /**
@@ -349,7 +349,7 @@ public class SCMultipleTableView: UIView ,UITableViewDataSource,UITableViewDeleg
         let rowCount = get_numberOfRowsInSection(section)
         
         //调用代理,判断代理是否实现展开section row 的方法
-        if self.multipleDelegate!.respondsToSelector(#selector(SCMultipleTableDelegate.m_tableView(_:willOpenSubRowFromSection:))) {
+        if self.multipleDelegate != nil && self.multipleDelegate!.respondsToSelector(#selector(SCMultipleTableDelegate.m_tableView(_:willOpenSubRowFromSection:))) {
             //如果实现该方法，
             self.multipleDelegate?.m_tableView!(self, willOpenSubRowFromSection: section)
         }
@@ -384,7 +384,7 @@ public class SCMultipleTableView: UIView ,UITableViewDataSource,UITableViewDeleg
         let rowCount = self.get_numberOfRowsInSection(section)
         
         //判断代理是否实现收起section中的行
-        if self.multipleDelegate!.respondsToSelector(#selector(SCMultipleTableDelegate.m_tableView(_:willCloseSubRowFromSection:))) {
+        if self.multipleDelegate != nil && self.multipleDelegate!.respondsToSelector(#selector(SCMultipleTableDelegate.m_tableView(_:willCloseSubRowFromSection:))) {
             
             self.multipleDelegate?.m_tableView!(self, willCloseSubRowFromSection: section)
         }
@@ -444,7 +444,7 @@ public class SCMultipleTableView: UIView ,UITableViewDataSource,UITableViewDeleg
     public func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         
         var height :CGFloat = 0
-        if self.multipleDelegate!.respondsToSelector(#selector(SCMultipleTableDelegate.m_tableView(_:heightForRowAtIndexPath:))){
+        if self.multipleDelegate != nil &&  self.multipleDelegate!.respondsToSelector(#selector(SCMultipleTableDelegate.m_tableView(_:heightForRowAtIndexPath:))){
             
             height = (self.multipleDelegate?.m_tableView!(self, heightForRowAtIndexPath: indexPath))!
         }
@@ -536,9 +536,11 @@ public class SCMultipleTableView: UIView ,UITableViewDataSource,UITableViewDeleg
      */
     private func get_numberOfRowsInSection(section:Int) ->Int{
         
-        var row = 0
+      //  var row = self.multipleDelegate?.m_tableView(self, numberOfRowsInSection: section) ?? 0
         
-        if self.multipleDelegate!.respondsToSelector(#selector(SCMultipleTableDelegate.m_tableView(_:numberOfRowsInSection:))) {
+        var row : Int = 0
+
+        if self.multipleDelegate != nil && self.multipleDelegate!.respondsToSelector(#selector(SCMultipleTableDelegate.m_tableView(_:numberOfRowsInSection:))) {
             
             row = self.multipleDelegate!.m_tableView(self, numberOfRowsInSection: section)
         }
@@ -557,7 +559,7 @@ public class SCMultipleTableView: UIView ,UITableViewDataSource,UITableViewDeleg
         
         var number = 0
         
-        if self.multipleDelegate!.respondsToSelector(#selector(SCMultipleTableDelegate.numberOfSectionsInSCMutlipleTableView(_:))) {
+        if self.multipleDelegate != nil && self.multipleDelegate!.respondsToSelector(#selector(SCMultipleTableDelegate.numberOfSectionsInSCMutlipleTableView(_:))) {
             
             number = (self.multipleDelegate?.numberOfSectionsInSCMutlipleTableView!(self))!
         }
@@ -576,7 +578,7 @@ public class SCMultipleTableView: UIView ,UITableViewDataSource,UITableViewDeleg
     private func get_cellForRowAtIndexPath(indexPath:NSIndexPath) ->UITableViewCell{
         
         var cell :UITableViewCell?
-        if self.multipleDelegate!.respondsToSelector(#selector(SCMultipleTableDelegate.m_tableView(_:cellForRowAtIndexPath:))) {
+        if self.multipleDelegate != nil && self.multipleDelegate!.respondsToSelector(#selector(SCMultipleTableDelegate.m_tableView(_:cellForRowAtIndexPath:))) {
             
             cell = self.multipleDelegate?.m_tableView(self, cellForRowAtIndexPath: indexPath)
         }
@@ -593,7 +595,7 @@ public class SCMultipleTableView: UIView ,UITableViewDataSource,UITableViewDeleg
      */
     private func get_didSelectRowAtIndexPath(indexPath:NSIndexPath) ->Void{
         
-        if self.multipleDelegate!.respondsToSelector(#selector(SCMultipleTableDelegate.m_tableView(_:didSelectRowAtIndexPath:))) {
+        if self.multipleDelegate != nil && self.multipleDelegate!.respondsToSelector(#selector(SCMultipleTableDelegate.m_tableView(_:didSelectRowAtIndexPath:))) {
             
             self.multipleDelegate?.m_tableView!(self, didSelectRowAtIndexPath: indexPath)
         }
@@ -611,7 +613,7 @@ public class SCMultipleTableView: UIView ,UITableViewDataSource,UITableViewDeleg
         
         var height:CGFloat = 0
         
-        if self.multipleDelegate!.respondsToSelector(#selector(SCMultipleTableDelegate.m_tableView(_:heightForHeaderInSection:))) {
+        if self.multipleDelegate != nil && self.multipleDelegate!.respondsToSelector(#selector(SCMultipleTableDelegate.m_tableView(_:heightForHeaderInSection:))) {
             
             height = (self.multipleDelegate?.m_tableView!(self, heightForHeaderInSection: section))!
         }
@@ -633,7 +635,7 @@ public class SCMultipleTableView: UIView ,UITableViewDataSource,UITableViewDeleg
         
         var height:CGFloat = 0
         
-        if self.multipleDelegate!.respondsToSelector(#selector(SCMultipleTableDelegate.m_tableView(_:heightForFootInSection:))) {
+        if self.multipleDelegate != nil && self.multipleDelegate!.respondsToSelector(#selector(SCMultipleTableDelegate.m_tableView(_:heightForFootInSection:))) {
             
             height = (self.multipleDelegate?.m_tableView!(self, heightForFootInSection: section))!
         }
@@ -652,7 +654,7 @@ public class SCMultipleTableView: UIView ,UITableViewDataSource,UITableViewDeleg
     private func get_viewForHeaderInSection(section:Int) ->UIView?{
         
         var view :UIView?
-        if self.multipleDelegate!.respondsToSelector(#selector(SCMultipleTableDelegate.m_tableView(_:viewForHeaderInSection:))) {
+        if self.multipleDelegate != nil && self.multipleDelegate!.respondsToSelector(#selector(SCMultipleTableDelegate.m_tableView(_:viewForHeaderInSection:))) {
             
             view = self.multipleDelegate?.m_tableView!(self, viewForHeaderInSection: section)
         }
