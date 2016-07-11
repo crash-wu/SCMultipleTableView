@@ -126,6 +126,39 @@ import UIKit
      */
     optional func m_tableView(tableView:SCMultipleTableView ,didSelectRowAtIndexPath indexPath :NSIndexPath) ->Void
     
+    optional func  m_scrollViewDidScroll(scrollView: UIScrollView)
+    
+    
+    optional  func m_scrollViewDidZoom(scrollView: UIScrollView) // any zoom scale changes
+    
+    // called on start of dragging (may require some time and or distance to move)
+    optional  func m_scrollViewWillBeginDragging(scrollView: UIScrollView)
+    // called on finger up if the user dragged. velocity is in points/millisecond. targetContentOffset may be changed to adjust where the scroll view comes to rest
+
+    optional  func m_scrollViewWillEndDragging(scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>)
+    // called on finger up if the user dragged. decelerate is true if it will continue moving afterwards
+    optional  func m_scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool)
+    
+
+    optional  func m_scrollViewWillBeginDecelerating(scrollView: UIScrollView) // called on finger up as we are moving
+
+    optional  func m_scrollViewDidEndDecelerating(scrollView: UIScrollView) // called when scroll view grinds to a halt
+    
+
+    optional  func m_scrollViewDidEndScrollingAnimation(scrollView: UIScrollView) // called when setContentOffset/scrollRectVisible:animated: finishes. not called if not animating
+    
+    optional  func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? // return a view that will be scaled. if delegate returns nil, nothing happens
+    
+    optional  func m_scrollViewWillBeginZooming(scrollView: UIScrollView, withView view: UIView?) // called before the scroll view begins zooming its content
+    
+
+    optional  func m_scrollViewDidEndZooming(scrollView: UIScrollView, withView view: UIView?, atScale scale: CGFloat) // scale between minimum and maximum. called after any 'bounce' animations
+    
+
+    optional  func m_scrollViewShouldScrollToTop(scrollView: UIScrollView) -> Bool // return a yes if you want to scroll to the top. if not defined, assumes YES
+
+    optional  func m_scrollViewDidScrollToTop(scrollView: UIScrollView) // called when scrolling animation finished. may be called immediately if already at top
+    
 }
 
 public class SCMultipleTableView: UIView ,UITableViewDataSource,UITableViewDelegate {
@@ -215,9 +248,21 @@ public class SCMultipleTableView: UIView ,UITableViewDataSource,UITableViewDeleg
    public func reload() ->Void{
         
         
-        self.tableView?.reloadData()
+        self.tableView!.reloadData()
     }
     
+    /**
+     刷新某一section的单元格
+     
+     :param: sections   需要重新刷新数据的section
+     :param: animation 动画
+     */
+    public func reloadSections(sections: NSIndexSet, withRowAnimation animation: UITableViewRowAnimation){
+        
+        
+        self.tableView.reloadSections(sections, withRowAnimation: animation)
+        
+    }
     
     //=======================================//
     //          Mark : private UITapGestureRecognizer             //
@@ -660,6 +705,105 @@ public class SCMultipleTableView: UIView ,UITableViewDataSource,UITableViewDeleg
         }
         
         return view
+    }
+    
+    //MARK: UIScrollViewDelegate
+    
+    public func scrollViewDidScroll(scrollView: UIScrollView) {
+        
+        if self.multipleDelegate != nil {
+            
+        self.multipleDelegate?.m_scrollViewDidScroll!(scrollView)
+        }
+
+    }
+    
+    public func scrollViewDidZoom(scrollView: UIScrollView) {
+        
+        if self.multipleDelegate != nil{
+            
+            self.multipleDelegate?.m_scrollViewDidZoom!(scrollView)
+        }
+    }
+    
+    public func scrollViewWillBeginDragging(scrollView: UIScrollView) {
+        
+        if self.multipleDelegate != nil{
+            
+            self.multipleDelegate?.m_scrollViewWillBeginDragging!(scrollView)
+        }
+    }
+    
+    
+    public func scrollViewWillEndDragging(scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        
+        if self.multipleDelegate != nil{
+            
+            self.multipleDelegate?.m_scrollViewWillEndDragging!(scrollView, withVelocity: velocity, targetContentOffset: targetContentOffset)
+        }
+    }
+    
+    
+    public func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+        
+        if self.multipleDelegate != nil{
+            
+            self.multipleDelegate?.m_scrollViewDidEndDecelerating!(scrollView)
+        }
+    }
+    
+    
+    public func scrollViewDidEndScrollingAnimation(scrollView: UIScrollView) {
+        if self.multipleDelegate != nil{
+            
+            self.multipleDelegate?.m_scrollViewDidEndScrollingAnimation!(scrollView)
+        }
+    }
+    
+    public func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
+        
+        var view :UIView?
+        if self.multipleDelegate != nil{
+            
+           view = self.multipleDelegate?.viewForZoomingInScrollView!(scrollView)
+        }
+        
+        return view
+    }
+    
+    public func scrollViewWillBeginZooming(scrollView: UIScrollView, withView view: UIView?) {
+        
+        if self.multipleDelegate != nil{
+            
+            self.multipleDelegate?.m_scrollViewWillBeginZooming!(scrollView, withView: view)
+        }
+    }
+    
+    public func scrollViewDidEndZooming(scrollView: UIScrollView, withView view: UIView?, atScale scale: CGFloat) {
+        
+        if self.multipleDelegate != nil{
+            
+            self.multipleDelegate?.m_scrollViewDidEndZooming!(scrollView, withView: view, atScale: scale)
+        }
+    }
+    
+    public func scrollViewDidScrollToTop(scrollView: UIScrollView) {
+        
+        if self.multipleDelegate != nil{
+            
+            self.multipleDelegate?.m_scrollViewDidScrollToTop!(scrollView)
+        }
+    }
+    
+    
+    public func scrollViewShouldScrollToTop(scrollView: UIScrollView) -> Bool {
+        
+        if self.multipleDelegate != nil{
+            
+            return self.multipleDelegate?.m_scrollViewShouldScrollToTop!(scrollView) ?? false
+        }else{
+            return false
+        }
     }
     
 }
