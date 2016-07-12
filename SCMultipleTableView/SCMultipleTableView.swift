@@ -711,99 +711,73 @@ public class SCMultipleTableView: UIView ,UITableViewDataSource,UITableViewDeleg
     
     public func scrollViewDidScroll(scrollView: UIScrollView) {
         
-        if self.multipleDelegate != nil {
             
-        self.multipleDelegate?.m_scrollViewDidScroll!(scrollView)
-        }
+        self.multipleDelegate?.m_scrollViewDidScroll?(scrollView)
 
     }
     
     public func scrollViewDidZoom(scrollView: UIScrollView) {
-        
-        if self.multipleDelegate != nil{
+
             
-            self.multipleDelegate?.m_scrollViewDidZoom!(scrollView)
-        }
+        self.multipleDelegate?.m_scrollViewDidZoom?(scrollView)
     }
     
     public func scrollViewWillBeginDragging(scrollView: UIScrollView) {
-        
-        if self.multipleDelegate != nil{
+
             
-            self.multipleDelegate?.m_scrollViewWillBeginDragging!(scrollView)
-        }
+        self.multipleDelegate?.m_scrollViewWillBeginDragging?(scrollView)
     }
     
     
     public func scrollViewWillEndDragging(scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         
-        if self.multipleDelegate != nil{
             
-            self.multipleDelegate?.m_scrollViewWillEndDragging!(scrollView, withVelocity: velocity, targetContentOffset: targetContentOffset)
-        }
+        self.multipleDelegate?.m_scrollViewWillEndDragging?(scrollView, withVelocity: velocity, targetContentOffset: targetContentOffset)
     }
     
     
     public func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
-        
-        if self.multipleDelegate != nil{
+
             
-            self.multipleDelegate?.m_scrollViewDidEndDecelerating!(scrollView)
-        }
+        self.multipleDelegate?.m_scrollViewDidEndDecelerating?(scrollView)
     }
     
     
     public func scrollViewDidEndScrollingAnimation(scrollView: UIScrollView) {
-        if self.multipleDelegate != nil{
             
-            self.multipleDelegate?.m_scrollViewDidEndScrollingAnimation!(scrollView)
-        }
+        self.multipleDelegate?.m_scrollViewDidEndScrollingAnimation?(scrollView)
     }
     
     public func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
         
         var view :UIView?
-        if self.multipleDelegate != nil{
             
-           view = self.multipleDelegate?.viewForZoomingInScrollView!(scrollView)
-        }
+        view = self.multipleDelegate?.viewForZoomingInScrollView?(scrollView)
         
         return view
     }
     
     public func scrollViewWillBeginZooming(scrollView: UIScrollView, withView view: UIView?) {
-        
-        if self.multipleDelegate != nil{
+
             
-            self.multipleDelegate?.m_scrollViewWillBeginZooming!(scrollView, withView: view)
-        }
+        self.multipleDelegate?.m_scrollViewWillBeginZooming?(scrollView, withView: view)
     }
     
     public func scrollViewDidEndZooming(scrollView: UIScrollView, withView view: UIView?, atScale scale: CGFloat) {
-        
-        if self.multipleDelegate != nil{
+
             
-            self.multipleDelegate?.m_scrollViewDidEndZooming!(scrollView, withView: view, atScale: scale)
-        }
+        self.multipleDelegate?.m_scrollViewDidEndZooming?(scrollView, withView: view, atScale: scale)
+
     }
     
     public func scrollViewDidScrollToTop(scrollView: UIScrollView) {
-        
-        if self.multipleDelegate != nil{
-            
-            self.multipleDelegate?.m_scrollViewDidScrollToTop!(scrollView)
-        }
+
+        self.multipleDelegate?.m_scrollViewDidScrollToTop?(scrollView)
     }
     
     
-    public func scrollViewShouldScrollToTop(scrollView: UIScrollView) -> Bool {
-        
-        if self.multipleDelegate != nil{
-            
-            return self.multipleDelegate?.m_scrollViewShouldScrollToTop!(scrollView) ?? false
-        }else{
-            return false
-        }
+    public func scrollViewShouldScrollToTop(scrollView: UIScrollView) -> Bool {            
+        return self.multipleDelegate?.m_scrollViewShouldScrollToTop?(scrollView) ?? false
     }
     
 }
