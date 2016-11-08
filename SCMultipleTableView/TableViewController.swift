@@ -18,10 +18,10 @@ class TableViewController: UIViewController,SCMultipleTableDelegate {
 
         // Do any additional setup after loading the view.
         
-        tableView = SCMultipleTableView(frame: CGRectMake(0, 0, self.view.frame.width, self.view.frame.height), style: .Plain)
+        tableView = SCMultipleTableView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height), style: .plain)
         tableView?.multipleDelegate = self
         
-        tableView?.backgroundColor = UIColor.grayColor()
+        tableView?.backgroundColor = UIColor.gray
         self.view.addSubview(tableView!)
         
         data = [["section0-row0","section0-row1"],["section1-row0","section1-row1"],["section2-row0","section2-row1"]]
@@ -43,32 +43,32 @@ class TableViewController: UIViewController,SCMultipleTableDelegate {
     //=======================================//
     
     
-    func numberOfSectionsInSCMutlipleTableView(tableView: SCMultipleTableView) -> Int {
+    func numberOfSectionsInSCMutlipleTableView(_ tableView: SCMultipleTableView) -> Int {
 
         return data.count
     }
     
     
-    func m_tableView(tableView: SCMultipleTableView, numberOfRowsInSection section: Int) -> Int {
+    func m_tableView(_ tableView: SCMultipleTableView, numberOfRowsInSection section: Int) -> Int {
 
         return data[section].count
     }
     
     
-    func m_tableView(tableView: SCMultipleTableView, heightForHeaderInSection section: Int) -> CGFloat {
+    func m_tableView(_ tableView: SCMultipleTableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 40
     }
     
-    func m_tableView(tableView: SCMultipleTableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func m_tableView(_ tableView: SCMultipleTableView, heightForRowAtIndexPath indexPath: IndexPath) -> CGFloat {
         
         return 30
     }
     
     
-    func m_tableView(tableView: SCMultipleTableView, viewForHeaderInSection section: Int) -> UIView? {
+    func m_tableView(_ tableView: SCMultipleTableView, viewForHeaderInSection section: Int) -> UIView? {
         
 
-        let  headView = NationMenuListSectionHeadView(frame:         CGRectMake(0, 0, tableView.frame.width, 40))
+        let  headView = NationMenuListSectionHeadView(frame:         CGRect(x: 0, y: 0, width: tableView.frame.width, height: 40))
         
         headView.listNameLb?.text = "section" + String(section)
         return headView
@@ -76,7 +76,7 @@ class TableViewController: UIViewController,SCMultipleTableDelegate {
     }
     
     
-    func m_tableView(tableView: SCMultipleTableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell? {
+    func m_tableView(_ tableView: SCMultipleTableView, cellForRowAtIndexPath indexPath: IndexPath) -> UITableViewCell? {
         
         
         let cellID = "cellId"
@@ -85,10 +85,10 @@ class TableViewController: UIViewController,SCMultipleTableDelegate {
         
         if cell == nil{
             
-            cell = UITableViewCell(style: .Default, reuseIdentifier: cellID)
+            cell = UITableViewCell(style: .default, reuseIdentifier: cellID)
         }
         
-        cell?.backgroundColor = UIColor.blueColor()
+        cell?.backgroundColor = UIColor.blue
         cell?.textLabel?.text = data[indexPath.section][indexPath.row]
         
         return cell

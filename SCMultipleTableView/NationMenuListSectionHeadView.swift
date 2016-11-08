@@ -19,16 +19,16 @@ class NationMenuListSectionHeadView: UIView {
         
         listNameLb = UILabel()
         self.addSubview(listNameLb!)
-        listNameLb?.frame = CGRectMake(0, 0, frame.width, frame.height)
+        listNameLb?.frame = CGRect(x: 0, y: 0, width: frame.width, height: frame.height)
         
-        listNameLb?.textAlignment = .Left
-        listNameLb?.font = UIFont.systemFontOfSize(13)
-        listNameLb?.textColor = UIColor.blackColor()
+        listNameLb?.textAlignment = .left
+        listNameLb?.font = UIFont.systemFont(ofSize: 13)
+        listNameLb?.textColor = UIColor.black
         
         line = UIView()
         self.addSubview(line!)
 
-        line?.frame = CGRectMake(5, frame.height - 1, frame.width - 10, 1)
+        line?.frame = CGRect(x: 5, y: frame.height - 1, width: frame.width - 10, height: 1)
         line?.backgroundColor = UIColor(red: 234/255, green: 234/255, blue: 234/255, alpha: 1.0)
 
         
